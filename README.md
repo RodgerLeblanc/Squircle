@@ -2,7 +2,7 @@ Squircle (beginner)
 --------------
 Easily add a Squircle in your app.
 
-1) Copy "Squircle" folder in your "src" folder
+1) Copy "Squircle" folder in your "assets" folder
 
 2) Add this to your qml file header where you want to add a Squircle:
 ```sh
