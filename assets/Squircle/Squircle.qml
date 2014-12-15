@@ -4,6 +4,18 @@ Container {
     id: container
     property int duration: 1000
     property bool isDarkTheme: false
+    property bool running: true
+    
+    onRunningChanged: {
+        if (running) {
+            outerRotateTransition.play()
+            parallelAnimation.play()
+        }
+        else {
+            outerRotateTransition.stop()
+            parallelAnimation.stop()
+        }
+    }
     
     onCreationCompleted: {
         outerRotateTransition.play()
@@ -22,7 +34,7 @@ Container {
                 toAngleZ: rotationZ + 90
                 duration: container.duration
                 easingCurve: StockCurve.Linear
-                onEnded: play()
+                onEnded: if (running) play()
             }
         ]
     }
@@ -33,7 +45,7 @@ Container {
         animations: [
             ParallelAnimation {
                 id: parallelAnimation
-                onEnded: play()
+                onEnded: if (running) play()
                 RotateTransition {
                     fromAngleZ: rotationZ
                     toAngleZ: rotationZ + 180

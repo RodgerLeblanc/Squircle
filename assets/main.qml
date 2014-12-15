@@ -21,17 +21,50 @@ Page {
     Container {
         Squircle {
             id: squircle
-            duration: slider.immediateValue * 5000
+            duration: slider.immediateValue
+            maxHeight: slider2.immediateValue
             isDarkTheme: true
         }
-        Slider {
-            id: slider
-            fromValue: 0
-            toValue: 1
-            value: 0.2
+        Container {
+            layout: StackLayout {
+                orientation: LayoutOrientation.LeftToRight
+            }
+            Label {
+                text: "Duration: " + Number(slider.immediateValue).toFixed(0)
+                minWidth: 350
+            }
+            Slider {
+                id: slider
+                fromValue: 0
+                toValue: 5000
+                value: 1000
+            }
         }
-        Label {
-            text: slider.immediateValue * 5000
+        Container {
+            layout: StackLayout {
+                orientation: LayoutOrientation.LeftToRight
+            }
+            Label {
+                text: "Size: " + Number(slider2.immediateValue).toFixed(0)
+                minWidth: 350
+            }
+            Slider {
+                id: slider2
+                fromValue: 10
+                toValue: 200
+                value: 200
+            }
+        }
+        CheckBox {
+            text: "Running"
+            checked: true
+            maxWidth: 300
+            onCheckedChanged: {
+                if (checked)
+                    squircle.running = true
+                else 
+                    squircle.running = false
+            }
         }
     }
 }
